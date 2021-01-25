@@ -74,11 +74,11 @@ class MealDetailScreen extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.favorite),
-        onPressed: () {},
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(Icons.favorite),
+      //   onPressed: () {},
+      // ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.miniEndFloat,
     );
   }
 }

@@ -4,21 +4,48 @@ import '../widgets/main_drawer.dart';
 class FiltersScreen extends StatefulWidget {
   static const routeName = '/filters';
 
+  final Function handleSave;
+  final Map<String, bool> setFilters;
+
+  FiltersScreen(this.handleSave, this.setFilters);
+
   @override
   _FiltersScreenState createState() => _FiltersScreenState();
 }
 
 class _FiltersScreenState extends State<FiltersScreen> {
   var _filterForVegan = false;
-  var _filterForVegitarian = false;
+  var _filterForVegetarian = false;
   var _filterForLactoseFree = false;
   var _filterForGlutenFree = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _filterForVegan = widget.setFilters['vegan'];
+    _filterForVegetarian = widget.setFilters['vegetarian'];
+    _filterForLactoseFree = widget.setFilters['lactoseFree'];
+    _filterForGlutenFree = widget.setFilters['glutenFree'];
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Filters'),
+        actions: [
+          IconButton(
+              icon: Icon(Icons.save_outlined),
+              onPressed: () {
+                final selectedFilters = {
+                  'vegan': _filterForVegan,
+                  'vegetarian': _filterForVegetarian,
+                  'glutenFree': _filterForGlutenFree,
+                  'lactoseFree': _filterForLactoseFree,
+                };
+                widget.handleSave(selectedFilters);
+              }),
+        ],
       ),
       drawer: MainDrawer(),
       body: Column(
@@ -43,11 +70,11 @@ class _FiltersScreenState extends State<FiltersScreen> {
                 ),
                 SwitchListTile.adaptive(
                   title: Text('Vegetarian'),
-                  subtitle: Text('Filter for vegitarian options'),
-                  value: _filterForVegitarian,
+                  subtitle: Text('Filter for Vegetarian options'),
+                  value: _filterForVegetarian,
                   onChanged: (newValue) {
                     setState(() {
-                      _filterForVegitarian = newValue;
+                      _filterForVegetarian = newValue;
                     });
                   },
                 ),
