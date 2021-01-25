@@ -38,6 +38,9 @@ class MyApp extends StatelessWidget {
         MealDetailScreen.routeName: (context) => MealDetailScreen(),
         FiltersScreen.routeName: (context) => FiltersScreen(),
       },
+      onUnknownRoute: (settings) => MaterialPageRoute(
+        builder: (context) => TabsScreen(),
+      ),
     );
   }
 }
